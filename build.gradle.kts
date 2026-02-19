@@ -51,6 +51,18 @@ graalvmNative {
     }
 }
 
+tasks.register<JavaExec>("runWithAgent") {
+    group = "native-image"
+    description = "Run the app with GraalVM native-image agent to generate META-INF/native-image."
+
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass = "io.github.malczuuu.sandbox.graalvm.Main"
+
+    jvmArgs = listOf(
+        "-agentlib:native-image-agent=config-output-dir=${projectDir}/src/main/resources/META-INF/native-image"
+    )
+}
+
 // Gradle's "Copy" task cannot handle symbolic links, see https://github.com/gradle/gradle/issues/3982. That is why
 // links contained in the GraalVM distribution archive get broken during provisioning and are replaced by empty
 // files. Address this by recreating the links in the toolchain directory.

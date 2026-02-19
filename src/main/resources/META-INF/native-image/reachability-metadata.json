@@ -1,0 +1,12 @@
+{
+  "reflection": [
+    {
+      "type": "io.github.malczuuu.sandbox.graalvm.DummyException",
+      "fields": [
+        {
+          "name": "help"
+        }
+      ]
+    }
+  ]
+}
